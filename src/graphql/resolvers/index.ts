@@ -1,8 +1,14 @@
+import users from './user'
+import roads from './road'
+
 export default {
   
     Query: {
-        async sendConsole() {
-            console.log("Hola Mudno")
-        }
+       ...roads.Query
     },
+
+    Mutation: {
+        ...users.Mutation,
+        ...roads.Mutation
+    }
 }

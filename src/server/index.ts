@@ -1,9 +1,12 @@
 import { ApolloServer } from 'apollo-server'
 import typeDefs from '../graphql/typeDefs';
 import resolvers from '../graphql/resolvers';
+import { initDataSources } from '../data-sources';
+import * as dotenv from 'dotenv';
 
-const PORT = 4500;
+dotenv.config();
 
+const PORT = process.env.PORT || 4500;
 
 const server = new ApolloServer({
     cors: true,
@@ -13,7 +16,11 @@ const server = new ApolloServer({
 });
 
 
-
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
+    await initDataSources({
+        mongoose: {
+            mongoUrl: process.env.MONGO_URL
+        }
+    })
     console.log(`Server running at http://localhost:${PORT}`)
 })
