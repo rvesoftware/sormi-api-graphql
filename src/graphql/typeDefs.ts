@@ -2,6 +2,8 @@ const typeDefts =  `
 
 type Query{
     allRoads: [Road]
+    allUsers: [User]
+    getUserById(uuid:String): User
 }
 
 type User{
@@ -42,6 +44,10 @@ input RoadInput {
     to_way: Boolean
 }
 
+type Photo{
+    status: Boolean
+    photo: String
+}
 type Mutation {
     userSignin(username: String, password: String): User
     userSignup(name: String, username: String, phone: String, password: String): User
@@ -55,6 +61,7 @@ type Mutation {
         to_house: Boolean
         to_way: Boolean): Road
 
+    updateUserPhoto(uuid: String, file: String): Photo
 
 }
 

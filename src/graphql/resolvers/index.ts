@@ -4,7 +4,8 @@ import roads from './road'
 export default {
   
     Query: {
-       ...roads.Query
+       ...roads.Query,
+       ...users.Query
     },
 
     Mutation: {
